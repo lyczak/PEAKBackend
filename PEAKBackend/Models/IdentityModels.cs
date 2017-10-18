@@ -20,6 +20,14 @@ namespace PEAKBackend.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Location> Locations { get; set; }
+
+        public DbSet<Module> Modules { get; set; }
+
+        public DbSet<Hint> Hints { get; set; }
+
+        public DbSet<HintCategory> HintCategories { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
