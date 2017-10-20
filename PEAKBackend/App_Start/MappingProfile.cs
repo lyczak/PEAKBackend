@@ -12,8 +12,19 @@ namespace PEAKBackend.App_Start
     {
         public MappingProfile()
         {
-            // Mapper.CreateMap<Hint, HintDto>();
-            // Mapper.CreateMap<HintDto, Hint>();
+            Mapper.CreateMap<Hint, HintDto>();
+            Mapper.CreateMap<HintDto, Hint>();
+
+            Mapper.CreateMap<HintCategory, HintCategoryDto>();
+            Mapper.CreateMap<HintCategoryDto, HintCategory>();
+
+            Mapper.CreateMap<Location, LocationDto>();
+            Mapper.CreateMap<LocationDto, Location>();
+
+            Mapper.CreateMap<Module, ModuleDto>();
+            Mapper.CreateMap<ModuleDto, Module>();
+
+            Mapper.CreateMap<ApplicationUser, ApplicationUserDto>();
         }
     }
 }

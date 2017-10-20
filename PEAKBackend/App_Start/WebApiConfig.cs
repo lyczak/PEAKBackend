@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace PEAKBackend
 {
@@ -10,9 +12,22 @@ namespace PEAKBackend
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            var serializerSettings = config.Formatters.JsonFormatter.SerializerSettings;
+            serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            serializerSettings.Formatting = Formatting.Indented;
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            config.Routes.MapHttpRoute(
+                name: "GetUserLocations",
+                routeTemplate: "api/user/locations",
+                defaults: new
+                {
+                    controller = "Locations",
+                    action = "GetUserLocations"
+                }
+            );
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

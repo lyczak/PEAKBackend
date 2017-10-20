@@ -15,5 +15,7 @@ namespace PEAKBackend.Models
 
         [Required]
         public string Description { get; set; }
+
+        public virtual List<Hint> Hints { get; set; }
     }
 }

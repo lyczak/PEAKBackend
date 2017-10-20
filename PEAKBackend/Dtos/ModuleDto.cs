@@ -15,5 +15,7 @@ namespace PEAKBackend.Dtos
 
         [Required]
         public string Description { get; set; }
+
+        public IEnumerable<HintDto> Hints { get; set; }
     }
 }
