@@ -10,11 +10,9 @@ namespace PEAKBackend.Dtos
     {
         public int Id { get; set; }
 
-        [Required]
-        public ModuleDto Module { get; set; }
+        public virtual ModuleDto Module { get; set; }
 
-        [Required]
-        public HintCategoryDto Category { get; set; }
+        public virtual HintCategoryDto Category { get; set; }
 
         [Required]
         public string Content { get; set; }

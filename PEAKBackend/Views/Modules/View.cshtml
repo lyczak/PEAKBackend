@@ -1,0 +1,55 @@
+﻿@model PEAKBackend.Models.Module
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2>
+<p>@Model.Description</p>
+
+@if (Model.Hints.Count == 0)
+{
+    <p class="well">This module contains no hints.</p>
+}
+else
+{
+    <table id="hints" class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Hint</th>
+            <th>Category</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+}
+
+@Html.ActionLink("New Hint", "New", "Hints",
+    new { moduleId = Model.Id },
+    new { @class = "btn btn-primary" })
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#hints").DataTable({
+                ajax: {
+                    url: "/api/hints?moduleId=@Model.Id",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "content",
+                        render: function(data, type, hint) {
+                            return "<a href='/hints/edit/" + hint.id + "'>" + hint.content + "</a>";
+                        }
+                    },
+                    {
+                        data: "category.name"
+                    }
+                ]
+            });
+        });
+    </script>
+}

@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using AutoMapper;
+using PEAKBackend.App_Start;
 
 namespace PEAKBackend
 {
@@ -13,6 +15,7 @@ namespace PEAKBackend
     {
         protected void Application_Start()
         {
+            Mapper.Initialize(m => m.AddProfile<MappingProfile>());
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

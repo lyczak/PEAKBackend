@@ -1,0 +1,59 @@
+﻿@model PEAKBackend.ViewModels.HintFormViewModel
+@{
+    ViewBag.Title = Model.Hint.Id == 0 ? "New Hint" : "Edit Hint";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "Hints"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Hint.CategoryId)
+        <i>
+            @Html.DropDownListFor(m => m.Hint.CategoryId, new SelectList(Model.Categories, "Id", "Name"),
+                "Select Category", new { @class = "form-control" })
+        </i>
+        @Html.ValidationMessageFor(m => m.Hint.CategoryId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Hint.Content)
+        @Html.TextAreaFor(m => m.Hint.Content, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Hint.Content)
+    </div>
+    @Html.HiddenFor(m => m.Hint.ModuleId)
+    @Html.HiddenFor(m => m.Hint.Id)
+    @Html.Hidden("referrer", Request.UrlReferrer)
+    @Html.AntiForgeryToken()
+    <div class="btn-group">
+        <button type="submit" class="btn btn-primary">Save Module</button>
+        @if (Model.Hint.Id != 0)
+        {
+            <a id="js-delete" class="btn btn-danger" data-hint-id="@Model.Hint.Id">Delete Module</a>
+        }
+    </div>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#js-delete").on("click", function () {
+                var button = $(this);
+                bootbox.confirm("Are you sure you want to delete this hint?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/hints/" + button.attr("data-hint-id"),
+                            method: "DELETE",
+                            success: function () {
+                                window.location.replace("/modules");
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

@@ -15,11 +15,11 @@ namespace PEAKBackend.Models
 
         [Required]
         public string UserId { get; set; }
-        public ApplicationUser User { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         [Required]
         public int ModuleId { get; set; }
-        public Module Module { get; set; }
+        public virtual Module Module { get; set; }
 
         public double Latitude { get; set; }
 

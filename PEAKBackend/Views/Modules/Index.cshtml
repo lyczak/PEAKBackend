@@ -1,0 +1,44 @@
+﻿@model IEnumerable<PEAKBackend.Controllers.ModulesController>
+@{
+    ViewBag.Title = "Modules";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Modules</h2>
+
+<table id="modules" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@Html.ActionLink("New Module", "New", "Modules", new { @class = "btn btn-primary" })
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#modules").DataTable({
+                ajax: {
+                    url: "/api/modules/",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function(data, type, module) {
+                            return "<a href='/modules/view/" + module.id + "'>" + module.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "description"
+                    }
+                ]
+            });
+        });
+    </script>
+}

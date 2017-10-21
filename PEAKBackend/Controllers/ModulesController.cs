@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -27,10 +28,17 @@ namespace PEAKBackend.Controllers
             return View();
         }
 
+        // GET /modules/view/{id}
+        public ActionResult View(int id)
+        {
+            var module = _context.Modules.Include(m => m.Hints).SingleOrDefault(m => m.Id == id);
+            return View(module);
+        }
+
         // GET /modules/new
         public ViewResult New()
         {
-            return View("ModulesForm", new Module());
+            return View("ModuleForm", new Module());
         }
 
         // GET /modules/edit/{id}
@@ -38,7 +46,7 @@ namespace PEAKBackend.Controllers
         {
             var module = _context.Modules.SingleOrDefault(m => m.Id == id);
             if (module == null) return HttpNotFound();
-            return View("ModulesForm", module);
+            return View("ModuleForm", module);
         }
 
         // POST /modules/save
@@ -46,7 +54,7 @@ namespace PEAKBackend.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(Module module)
         {
-            if (!ModelState.IsValid) return View("ModulesForm", module);
+            if (!ModelState.IsValid) return View("ModuleForm", module);
             if (module.Id == 0)
             {
                 _context.Modules.Add(module);
