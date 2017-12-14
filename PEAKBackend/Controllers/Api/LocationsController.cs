@@ -32,7 +32,8 @@ namespace PEAKBackend.Controllers.Api
         {
             var locations = _context.Locations
                 .Where(l => l.UserId == UserId) //User.Identity.GetUserId()
-                .Include(l => l.Module.Hints.Select(h => h.Category))
+                .Include(l => l.User)
+                .Include(l => l.Module)
                 .Select(Mapper.Map<Location, LocationDto>).ToList();
             return Ok(locations);
         }

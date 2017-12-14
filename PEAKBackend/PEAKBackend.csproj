@@ -218,6 +218,7 @@
     <Compile Include="Controllers\Api\UsersController.cs" />
     <Compile Include="Controllers\HintsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ModulesController.cs" />
     <Compile Include="Dtos\ApplicationUserDto.cs" />
@@ -240,17 +241,23 @@
     <Compile Include="Migrations\201710201809354_SeedHintCategories.Designer.cs">
       <DependentUpon>201710201809354_SeedHintCategories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712141321580_AddImageModel.cs" />
+    <Compile Include="Migrations\201712141321580_AddImageModel.Designer.cs">
+      <DependentUpon>201712141321580_AddImageModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Hint.cs" />
-    <Compile Include="Models\HintCategory.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Location.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Module.cs" />
+    <Compile Include="Migrations\Models\AccountViewModels.cs" />
+    <Compile Include="Migrations\Models\Hint.cs" />
+    <Compile Include="Migrations\Models\HintCategory.cs" />
+    <Compile Include="Migrations\Models\IdentityModels.cs" />
+    <Compile Include="Migrations\Models\Image.cs" />
+    <Compile Include="Migrations\Models\Location.cs" />
+    <Compile Include="Migrations\Models\ManageViewModels.cs" />
+    <Compile Include="Migrations\Models\Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\HintFormViewModel.cs" />
+    <Compile Include="ViewModels\NewImageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -555,6 +562,7 @@
     <Content Include="Views\Modules\Index.cshtml" />
     <Content Include="Views\Modules\View.cshtml" />
     <Content Include="Views\Hints\HintForm.cshtml" />
+    <Content Include="Views\Images\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -577,6 +585,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710201809354_SeedHintCategories.resx">
       <DependentUpon>201710201809354_SeedHintCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712141321580_AddImageModel.resx">
+      <DependentUpon>201712141321580_AddImageModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

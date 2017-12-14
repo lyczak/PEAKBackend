@@ -28,6 +28,8 @@ namespace PEAKBackend.Models
 
         public DbSet<HintCategory> HintCategories { get; set; }
 
+        public DbSet<Image> Images { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

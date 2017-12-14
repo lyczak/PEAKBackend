@@ -1,0 +1,23 @@
+﻿@using Microsoft.Ajax.Utilities
+@model PEAKBackend.ViewModels.NewImageViewModel
+@{
+    ViewBag.Title = "New Image";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Image for Module</h2>
+
+@using (Html.BeginForm("Upload", "Images", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <label for="file">Image file:</label>
+    <input type="file" name="file" id="file" />
+    @Html.Hidden("moduleId", Model.ModuleId);
+    <input type="submit" />
+}
+
+@if (!Model.ErrorMessage.IsNullOrWhiteSpace())
+{
+    <script>
+        bootbox.alert("@Model.ErrorMessage");
+    </script>
+}

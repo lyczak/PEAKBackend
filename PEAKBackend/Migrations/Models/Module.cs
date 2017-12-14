@@ -17,5 +17,9 @@ namespace PEAKBackend.Models
         public string Description { get; set; }
 
         public virtual List<Hint> Hints { get; set; }
+
+        public int? ImageId { get; set; }
+
+        public virtual Image Image { get; set; }
     }
 }

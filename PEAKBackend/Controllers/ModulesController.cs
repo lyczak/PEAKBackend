@@ -55,7 +55,8 @@ namespace PEAKBackend.Controllers
         public ActionResult Save(Module module)
         {
             if (!ModelState.IsValid) return View("ModuleForm", module);
-            if (module.Id == 0)
+            var isNew = module.Id == 0;
+            if (isNew)
             {
                 _context.Modules.Add(module);
             }
@@ -66,6 +67,7 @@ namespace PEAKBackend.Controllers
                 existingModule.Description = module.Description;
             }
             _context.SaveChanges();
+            if (isNew) return RedirectToAction("New", "Images", new { moduleId = module.Id });
             return RedirectToAction("Index");
         }
     }

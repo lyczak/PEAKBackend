@@ -13,11 +13,9 @@ namespace PEAKBackend.Dtos
         [Required]
         public string Name { get; set; }
 
-        [Required]
-        public ApplicationUserDto User { get; set; }
+        public virtual ApplicationUserDto User { get; set; }
 
-        [Required]
-        public ModuleDto Module { get; set; }
+        public virtual ModuleDto Module { get; set; }
 
         public double Latitude { get; set; }
 
